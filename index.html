@@ -387,14 +387,22 @@
     }
 
     .edu-tag {
-      background: #310767;
-      border: 1px solid #7a3bee;
-      color: #7a3bee;
+      background: #1f1338;
+      border: 1px solid #6c4bff;
+      color: #cbb8ff;
       font-family: 'Courier New', monospace;
       font-size: 0.8rem;
       padding: 0.6rem 0.9rem;
       border-radius: 6px;
       line-height: 1.4;
+
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .edu-tag:hover {
+      transform: translateY(-2px) scale(1.005);
+      box-shadow: 
+        0 6px 12px rgba(122,59,238,0.25),
+        0 0 10px rgba(122,59,238,0.35);
     }
 
     /* ── SKILLS ── */
@@ -520,10 +528,9 @@
         <p class="section-label">About Me</p>
         <h2 class="section-title">A little bit about me.</h2>
         <p>
-          Write a paragraph about yourself here. Where are you from? What are you studying or working on? What drives you?
-        </p>
+          I'm Alexander Escobar, a Computer Science student at NYU Tandon with a focus on healthcare engineering and data science. I am always seeking ways to make technology actually matter in people's lives.        </p>
         <p>
-          Add a second paragraph with more color — hobbies, goals, what you're currently learning, or anything that makes you interesting.
+          Outside of engineering, I'm usually chasing something active, whether that's basketball, anything with an adrenaline kick, or showing up for my youth church community. It keeps me grounded and reminds me why building things for people matters.
         </p>
         <br>
         <a href="#contact" class="btn btn-ghost">Let's Connect →</a>
@@ -614,10 +621,9 @@
           <div class="edu-tags-grid">
             <div class="edu-tag">NYU Higher Education Opportunity Program (HEOP)</div>
             <div class="edu-tag">Society of Hispanic Professional Engineers (SHPE)</div>
-            <div class="edu-tag">National Society of Black Engineers (NSBE)</div>
             <div class="edu-tag">NYU Academic Achievement Program (AAP)</div>
             <div class="edu-tag">NYU Global Leaders and Scholars in STEM Honors Program (GLASS)</div>
-            <div class="edu-tag">Institute for Responsible Leadership (I4RC)</div>
+            <div class="edu-tag">Jesus Is LIght Youth (JIL)</div>
           </div>
         </div>
       </div>
@@ -706,8 +712,8 @@
       Whether you want to collaborate, chat, or just say hi — my inbox is open.
     </p>
     <div class="contact-links reveal">
-      <a href="mailto:you@email.com" class="btn btn-primary">✉️ Email Me</a>
-      <a href="https://linkedin.com/in/yourhandle" target="_blank" class="btn btn-ghost">LinkedIn</a>
+      <a href="mailto:aescobar@nyu.com" class="btn btn-primary">✉️ Email Me</a>
+      <a href="https://www.linkedin.com/in/alexanderescobar-/" target="_blank" class="btn btn-ghost">LinkedIn</a>
       <a href="https://github.com/EscoAl516" target="_blank" class="btn btn-ghost">GitHub</a>
     </div>
   </section>
