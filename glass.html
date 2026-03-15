@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GLASS | Alexander Escobar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --bg2: #111118;
+      --surface: #16161f;
+      --border: #ffffff0f;
+      --accent: #7b6cff;
+      --accent2: #b8aeff;
+      --text: #e8e8f0;
+      --muted: #7a7a9a;
+      --gold: #c9a84c;
+      --gold-dim: #c9a84c33;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 6vw;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-back {
+      font-size: 0.85rem;
+      color: var(--accent2);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 6vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 50%, #7b6cff18 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, #c9a84c0d 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 760px;
+    }
+
+    .hero-breadcrumb {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .hero-breadcrumb a { color: var(--accent2); text-decoration: none; }
+    .hero-breadcrumb a:hover { color: var(--text); }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-dim);
+      padding: 0.3rem 0.85rem;
+      border-radius: 100px;
+      margin-bottom: 1.75rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero-title .accent { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .stat { text-align: center; }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.8rem;
+      color: var(--accent2);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    /* ── SHARED SECTION STYLES ── */
+    section { padding: 6rem 6vw; }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .section-body {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 700px;
+      margin-bottom: 1rem;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 6vw;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.6rem;
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #6a5bee; transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: #ffffff30; background: #ffffff08; }
+
+    /* ── MISSION ── */
+    #mission { background: var(--bg2); }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* ── AREAS OF EXCELLENCE ── */
+    #areas { background: var(--bg); }
+
+    .areas-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .area-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      transition: border-color 0.2s;
+    }
+
+    .area-card:hover { border-color: #7b6cff44; }
+
+    .area-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .area-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .area-desc { color: var(--muted); font-size: 0.875rem; line-height: 1.65; }
+
+    /* ── UN GOALS ── */
+    #goals { background: var(--bg2); }
+
+    .goals-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .goal-card {
+      background: var(--surface);
+      border: 1px solid var(--gold-dim);
+      border-radius: 12px;
+      padding: 1.75rem;
+    }
+
+    .goal-badge {
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      border: 1px solid var(--gold-dim);
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+
+    .goal-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .goal-desc { color: var(--muted); font-size: 0.875rem; line-height: 1.65; }
+
+    /* ── EXPERIENCES (5 WINDOWS) ── */
+    #experiences { background: var(--bg); }
+
+    .window-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .window-tab {
+      padding: 0.45rem 1rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-family: var(--font-body);
+      transition: all 0.2s;
+    }
+
+    .window-tab:hover { color: var(--text); border-color: #ffffff22; }
+    .window-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    .window-panel { display: none; }
+    .window-panel.active { display: block; }
+
+    .exp-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .exp-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .exp-card:hover { border-color: #7b6cff44; transform: translateY(-2px); }
+
+    .exp-window-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 0.6rem;
+    }
+
+    .exp-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .exp-meta {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .exp-desc { color: var(--muted); font-size: 0.875rem; line-height: 1.65; }
+
+    /* ── CARD CLICK HINT ── */
+    .exp-card { cursor: pointer; position: relative; }
+ 
+    .exp-card-hint {
+      margin-top: 1.25rem;
+      font-size: 0.78rem;
+      color: var(--accent2);
+      letter-spacing: 0.06em;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+ 
+    .exp-card:hover .exp-card-hint { opacity: 1; }
+ 
+    /* ── MODAL OVERLAY ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: #000000cc;
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+ 
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+ 
+    /* ── MODAL BOX ── */
+    .modal {
+      background: var(--surface);
+      border: 1px solid #ffffff18;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 720px;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(20px) scale(0.98);
+      transition: transform 0.25s ease;
+      position: relative;
+    }
+ 
+    .modal-overlay.open .modal {
+      transform: translateY(0) scale(1);
+    }
+ 
+    /* ── MODAL PHOTO GALLERY ── */
+    .modal-gallery {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--bg);
+      border-radius: 16px 16px 0 0;
+      overflow: hidden;
+      position: relative;
+    }
+ 
+    .modal-gallery-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.35s ease;
+    }
+ 
+    .modal-photo {
+      min-width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: var(--bg2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-family: 'Courier New', monospace;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+ 
+    .modal-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+ 
+    .modal-photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+    }
+ 
+    .modal-photo-placeholder span { font-size: 2rem; }
+    .modal-photo-placeholder p { font-size: 0.8rem; font-family: 'Courier New', monospace; }
+ 
+    /* Gallery nav arrows */
+    .gallery-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #000000aa;
+      border: 1px solid #ffffff18;
+      color: var(--text);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      z-index: 2;
+    }
+ 
+    .gallery-btn:hover { background: #000000ee; }
+    .gallery-btn.prev { left: 1rem; }
+    .gallery-btn.next { right: 1rem; }
+    .gallery-btn.hidden { display: none; }
+ 
+    /* Photo counter */
+    .gallery-counter {
+      position: absolute;
+      bottom: 0.75rem;
+      right: 1rem;
+      background: #000000aa;
+      color: var(--muted);
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+ 
+    /* ── MODAL BODY ── */
+    .modal-body { padding: 2rem; }
+ 
+    .modal-window-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 0.5rem;
+    }
+ 
+    .modal-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 0.3rem;
+    }
+ 
+    .modal-meta {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+ 
+    .modal-desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+ 
+    /* Close button */
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #000000bb;
+      border: 1px solid #ffffff18;
+      color: var(--text);
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: background 0.2s;
+    }
+ 
+    .modal-close:hover { background: #000000ee; }
+ 
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 6vw;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mission-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .areas-grid { grid-template-columns: 1fr; }
+      .goals-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Alex<span>.</span>Escobar</a>
+    <ul class="nav-links">
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#areas">Areas</a></li>
+      <li><a href="#goals">UN Goals</a></li>
+      <li><a href="#experiences">Experiences</a></li>
+      <li><a href="index.html" class="nav-back">← Back to Portfolio</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-breadcrumb">
+        <a href="index.html">Portfolio</a> / GLASS Honors Program
+      </div>
+      <div class="hero-tag">🎓 NYU Tandon · GLASS Scholar</div>
+      <h1 class="hero-title">
+        Global Leaders &<br><span class="accent">Scholars in STEM</span>
+      </h1>
+      <p class="hero-sub">
+        NYU Tandon's premier honors program for globally competent and socially responsible engineers. My journey through leadership, global experiences, and technical innovation.
+      </p>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Years in GLASS</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Countries Studied In</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">3.56</div>
+          <div class="stat-label">GPA</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Windows of Growth</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- MISSION -->
+  <section id="mission">
+    <div class="mission-grid">
+      <div class="reveal">
+        <p class="section-label">Who I Am</p>
+        <h2 class="section-title">Mission Statement</h2>
+        <p class="section-body">
+          My mission in computer engineering centers on mastering embedded systems, particularly their applications in automation, sustainability, and intelligent systems. I am especially interested in how embedded systems can drive efficiency and precision in real-world solutions, such as automated sorting systems for waste management.
+        </p>
+        <p class="section-body">
+          By integrating theoretical knowledge with hands-on expertise, I aim to develop the ability to conduct experiments, analyze complex datasets, and leverage engineering judgment to draw insightful conclusions. Through practical application, I seek to design innovative solutions that address pressing global challenges, including sustainable production and waste reduction.
+        </p>
+        <p class="section-body">
+          Technology is constantly changing, so I make it a priority to stay up to date with new advancements and find creative ways to apply what I learn. Beyond the classroom, I seek out hands-on experiences that challenge me to solve real-world problems and push my skills further.
+        </p>
+      </div>
+      <div class="reveal">
+        <p class="section-label">The Program</p>
+        <h2 class="section-title">What is GLASS?</h2>
+        <p class="section-body">
+          The Global Leaders and Scholars in STEM (GLASS) program at NYU Tandon is a three-year honors program that cultivates globally competent, socially responsible engineers. Scholars engage with the NAE Grand Challenges and the UN Sustainability Development Goals, emerging as innovators ready to change the world.
+        </p>
+        <br>
+        <a href="https://engineering.nyu.edu/academics/support-services/undergraduate/glass" target="_blank" class="btn btn-ghost">Visit GLASS Website →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- AREAS OF EXCELLENCE -->
+  <section id="areas">
+    <p class="section-label reveal">NYU Tandon Research</p>
+    <h2 class="section-title reveal">Areas of Research Excellence</h2>
+    <p class="section-body reveal">The two research areas at NYU Tandon that align most closely with my mission and engineering goals.</p>
+
+    <div class="areas-grid">
+      <div class="area-card reveal">
+        <span class="area-icon">🤖</span>
+        <div class="area-name">Data Science / AI / Robotics</div>
+        <div class="area-desc">
+          NYU Tandon is making significant progress in this space, from drones controlled by gaze to algorithms that enhance financial security. Their approach harnesses data, machine learning, and autonomous systems to address global issues. This strongly aligns with my commitment to integrating theoretical knowledge with practical expertise in embedded systems, and mirrors my own goal of analyzing complex datasets.
+        </div>
+      </div>
+      <div class="area-card reveal">
+        <span class="area-icon">📡</span>
+        <div class="area-name">Communications / IT</div>
+        <div class="area-desc">
+          NYU Tandon is at the forefront of communications research, paving the way for 5G and 6G mobile, computer vision, and cloud-based AI. Their work extends to ultra-fast vehicle communications, remote surgery, and AR/VR. This aligns with my mission to cultivate a deep understanding of embedded systems and their intersection with cutting-edge communications technology.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- UN GOALS -->
+  <section id="goals">
+    <p class="section-label reveal">Global Impact</p>
+    <h2 class="section-title reveal">UN SDGs & NAE Grand Challenges</h2>
+    <p class="section-body reveal">The sustainability goals and engineering grand challenges that my work connects to.</p>
+
+    <div class="goals-grid">
+      <div class="goal-card reveal">
+        <div class="goal-badge">SDG 4</div>
+        <div class="goal-title">Quality Education</div>
+        <div class="goal-desc">
+          Emphasizing continuous learning, hands-on experience, and the application of new knowledge directly aligns with promoting quality education for all. My commitment to mentorship and knowledge-sharing reflects this goal in practice.
+        </div>
+      </div>
+      <div class="goal-card reveal">
+        <div class="goal-badge">SDG 9</div>
+        <div class="goal-title">Industry, Innovation & Infrastructure</div>
+        <div class="goal-desc">
+          Contributing to technological innovation and infrastructure development through embedded systems and automation aligns with fostering inclusive and sustainable industrialization. My work on automated systems directly addresses this goal.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- EXPERIENCES / 5 WINDOWS -->
+  <section id="experiences">
+    <p class="section-label reveal">The 5 Windows of Growth</p>
+    <h2 class="section-title reveal">My GLASS Experiences</h2>
+    <p class="section-body reveal">GLASS scholars grow across five dimensions. Click a window to explore my experiences in each.</p>
+ 
+    <div class="window-tabs reveal">
+      <button class="window-tab active" onclick="showWindow('all')">All</button>
+      <button class="window-tab" onclick="showWindow('global')">🌍 Global</button>
+      <button class="window-tab" onclick="showWindow('leadership')">🏆 Leadership</button>
+      <button class="window-tab" onclick="showWindow('academic')">📚 Academic</button>
+      <button class="window-tab" onclick="showWindow('service')">🤝 Service</button>
+      <button class="window-tab" onclick="showWindow('professional')">💼 Professional</button>
+    </div>
+ 
+    <div class="exp-cards" id="exp-container">
+ 
+      <div class="exp-card reveal" data-window="global"
+        data-title="Semester Abroad — Abu Dhabi"
+        data-tag="🌍 Global Competency"
+        data-meta="NYU Abu Dhabi · Spring Semester"
+        data-desc="Immersed in the local culture, engaging with people from diverse backgrounds. Honed communication skills, became more independent, and developed resilience navigating life far from familiar surroundings. Sharpened the ability to approach challenges creatively — skills that directly contribute to my mission in computer engineering."
+        data-photos='["abu-dhabi-1.jpg","abu-dhabi-2.jpg"]'
+        onclick="openModal(this)">
+        <div class="exp-window-tag">🌍 Global Competency</div>
+        <div class="exp-title">Semester Abroad — Abu Dhabi</div>
+        <div class="exp-meta">NYU Abu Dhabi · Spring Semester</div>
+        <div class="exp-desc">Immersed in the local culture, engaging with people from diverse backgrounds. Honed communication skills, became more independent, and developed resilience navigating life far from familiar surroundings.</div>
+        <div class="exp-card-hint">Click to view photos →</div>
+      </div>
+ 
+      <div class="exp-card reveal" data-window="global"
+        data-title="Study Abroad — Portugal"
+        data-tag="🌍 Global Competency"
+        data-meta="Consulting Project · Sustainability Focus"
+        data-desc="Worked on a consulting project for a real company while visiting organizations dedicated to sustainability, innovation, and clean energy. Gained hands-on experience in strategic problem-solving and saw how engineering skills connect to the UN Sustainable Development Goals."
+        data-photos='["portugal-1.jpg","portugal-2.jpg"]'
+        onclick="openModal(this)">
+        <div class="exp-window-tag">🌍 Global Competency</div>
+        <div class="exp-title">Study Abroad — Portugal</div>
+        <div class="exp-meta">Consulting Project · Sustainability Focus</div>
+        <div class="exp-desc">Worked on a consulting project for a real company while visiting organizations dedicated to sustainability, innovation, and clean energy.</div>
+        <div class="exp-card-hint">Click to view photos →</div>
+      </div>
+ 
+      <div class="exp-card reveal" data-window="leadership"
+        data-title="First-Year Student Mentor"
+        data-tag="🏆 Leadership"
+        data-meta="NYU Tandon · Ongoing"
+        data-desc="Provided guidance on campus resources, university life, and academic challenges through weekly check-ins. Helped students, especially those from underrepresented backgrounds, gain confidence in their academic journey. Many mentees expressed interest in becoming mentors themselves, demonstrating the long-term impact of this support system."
+        data-photos='["mentor-1.jpg"]'
+        onclick="openModal(this)">
+        <div class="exp-window-tag">🏆 Leadership</div>
+        <div class="exp-title">First-Year Student Mentor</div>
+        <div class="exp-meta">NYU Tandon · Ongoing</div>
+        <div class="exp-desc">Provided guidance on campus resources, university life, and academic challenges through weekly check-ins. Helped students from underrepresented backgrounds gain confidence.</div>
+        <div class="exp-card-hint">Click to view photos →</div>
+      </div>
+ 
+      <div class="exp-card reveal" data-window="academic"
+        data-title="RoboChess — Head of Programming"
+        data-tag="📚 Academic Excellence"
+        data-meta="Team Project · NYU Tandon"
+        data-desc="Part of a four-person team automating chess movements on a physical chessboard using a fully functional app. As head of programming, developed software to communicate between the application and VEX motors controlling the chess pieces — involving data transfer, motor calibration, and precision movement. Taught valuable lessons in problem-solving, teamwork, and perseverance."
+        data-photos='["robochess-1.jpg","robochess-2.jpg"]'
+        onclick="openModal(this)">
+        <div class="exp-window-tag">📚 Academic Excellence</div>
+        <div class="exp-title">RoboChess — Head of Programming</div>
+        <div class="exp-meta">Team Project · NYU Tandon</div>
+        <div class="exp-desc">Part of a four-person team automating chess movements on a physical chessboard. As head of programming, developed software to communicate between the app and VEX motors.</div>
+        <div class="exp-card-hint">Click to view photos →</div>
+      </div>
+ 
+      <div class="exp-card reveal" data-window="service"
+        data-title="Youth Church Community"
+        data-tag="🤝 Service"
+        data-meta="Ongoing · Community Leadership"
+        data-desc="Active involvement in youth church community, contributing to service, leadership, and community building. This grounding in service reinforces the belief that engineering work should ultimately benefit people and communities, keeping purpose at the center of everything."
+        data-photos='["church-1.jpg"]'
+        onclick="openModal(this)">
+        <div class="exp-window-tag">🤝 Service</div>
+        <div class="exp-title">Youth Church Community</div>
+        <div class="exp-meta">Ongoing · Community Leadership</div>
+        <div class="exp-desc">Active involvement contributing to service, leadership, and community building. Keeps purpose and people at the center of everything I do.</div>
+        <div class="exp-card-hint">Click to view photos →</div>
+      </div>
+ 
+      <div class="exp-card reveal" data-window="professional"
+        data-title="Add Your Professional Experience"
+        data-tag="💼 Professional"
+        data-meta="Company · Role · Date"
+        data-desc="Describe your internship, research position, or professional experience here. What did you do, what did you learn, and how does it connect to your mission?"
+        data-photos='[]'
+        onclick="openModal(this)">
+        <div class="exp-window-tag">💼 Professional</div>
+        <div class="exp-title">Add Your Professional Experience</div>
+        <div class="exp-meta">Company · Role · Date</div>
+        <div class="exp-desc">Describe your internship, research position, or professional experience here.</div>
+        <div class="exp-card-hint">Click to view details →</div>
+      </div>
+ 
+    </div>
+  </section>
+ 
+  <div class="divider"></div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Alexander Escobar · GLASS Honors Program</span>
+    <a href="index.html">← Back to Portfolio</a>
+  </footer>
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
+    <div class="modal" id="modal">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+ 
+      <!-- Gallery -->
+      <div class="modal-gallery" id="modal-gallery">
+        <div class="modal-gallery-track" id="gallery-track"></div>
+        <button class="gallery-btn prev hidden" id="gallery-prev" onclick="slideGallery(-1)">‹</button>
+        <button class="gallery-btn next hidden" id="gallery-next" onclick="slideGallery(1)">›</button>
+        <div class="gallery-counter" id="gallery-counter"></div>
+      </div>
+ 
+      <!-- Content -->
+      <div class="modal-body">
+        <div class="modal-window-tag" id="modal-tag"></div>
+        <div class="modal-title" id="modal-title"></div>
+        <div class="modal-meta" id="modal-meta"></div>
+        <div class="modal-desc" id="modal-desc"></div>
+      </div>
+    </div>
+  </div>
+ 
+  <script>
+    // ── Scroll reveal ──
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+ 
+    // ── Window filter tabs ──
+    function showWindow(type) {
+      document.querySelectorAll('.window-tab').forEach(t => t.classList.remove('active'));
+      event.target.classList.add('active');
+      document.querySelectorAll('.exp-card').forEach(card => {
+        card.style.display = (type === 'all' || card.dataset.window === type) ? 'block' : 'none';
+      });
+    }
+ 
+    // ── Modal ──
+    let currentSlide = 0;
+    let totalSlides = 0;
+ 
+    function openModal(card) {
+      const photos = JSON.parse(card.dataset.photos || '[]');
+      const track = document.getElementById('gallery-track');
+      const counter = document.getElementById('gallery-counter');
+      const prevBtn = document.getElementById('gallery-prev');
+      const nextBtn = document.getElementById('gallery-next');
+ 
+      // Build gallery slides
+      track.innerHTML = '';
+      currentSlide = 0;
+      totalSlides = photos.length;
+ 
+      if (photos.length === 0) {
+        // No photos — show placeholder
+        track.innerHTML = `
+          <div class="modal-photo" style="min-width:100%;display:flex;align-items:center;justify-content:center;">
+            <div class="modal-photo-placeholder">
+              <span>🖼️</span>
+              <p>Add your photos here</p>
+              <p style="font-size:0.7rem;opacity:0.6;">data-photos='["photo1.jpg","photo2.jpg"]'</p>
+            </div>
+          </div>`;
+        counter.textContent = '';
+        prevBtn.classList.add('hidden');
+        nextBtn.classList.add('hidden');
+      } else {
+        photos.forEach(src => {
+          const slide = document.createElement('div');
+          slide.className = 'modal-photo';
+          slide.style.cssText = 'min-width:100%;height:100%;';
+          slide.innerHTML = `<img src="${src}" alt="" onerror="this.parentElement.innerHTML='<div class=modal-photo-placeholder><span>🖼️</span><p>${src}</p></div>'">`;
+          track.appendChild(slide);
+        });
+ 
+        counter.textContent = `1 / ${photos.length}`;
+        prevBtn.classList.toggle('hidden', photos.length <= 1);
+        nextBtn.classList.toggle('hidden', photos.length <= 1);
+        updateGallery();
+      }
+ 
+      // Fill modal content
+      document.getElementById('modal-tag').textContent = card.dataset.tag;
+      document.getElementById('modal-title').textContent = card.dataset.title;
+      document.getElementById('modal-meta').textContent = card.dataset.meta;
+      document.getElementById('modal-desc').textContent = card.dataset.desc;
+ 
+      // Open
+      document.getElementById('modal-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+ 
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+ 
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('modal-overlay')) closeModal();
+    }
+ 
+    function slideGallery(dir) {
+      currentSlide = Math.max(0, Math.min(currentSlide + dir, totalSlides - 1));
+      updateGallery();
+    }
+ 
+    function updateGallery() {
+      document.getElementById('gallery-track').style.transform = `translateX(-${currentSlide * 100}%)`;
+      document.getElementById('gallery-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+      document.getElementById('gallery-prev').classList.toggle('hidden', currentSlide === 0);
+      document.getElementById('gallery-next').classList.toggle('hidden', currentSlide === totalSlides - 1);
+    }
+ 
+    // Close on Escape key
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  </script>
+ 
+</body>
+</html>
