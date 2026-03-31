@@ -475,9 +475,63 @@
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
+    /* ── HAMBURGER MENU ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 200;
+    }
+ 
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+ 
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+ 
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 150;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+ 
+    .mobile-menu.open { display: flex; }
+ 
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+ 
+    .mobile-menu a:hover { color: var(--accent); }
+    .mobile-menu a.glass-link { color: var(--accent2); font-size: 1.4rem; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .nav-links { display: none; }
+      .hamburger { display: flex; }
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .photo-frame { max-width: 100%; }
       .edu-tags-grid { grid-template-columns: 1fr; }
@@ -499,7 +553,20 @@
       <li><a href="#contact">Contact</a></li>
       <li><a href="glass.html" style="color: var(--accent2);">GLASS ↗</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#Education" onclick="closeMobile()">Education</a>
+    <a href="#skills" onclick="closeMobile()">Skills</a>
+    <a href="#projects" onclick="closeMobile()">Projects</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+    <a href="glass.html" class="glass-link">GLASS ↗</a>
+  </div>
 
   <!-- HERO -->
   <section id="hero">
@@ -638,41 +705,41 @@
     <p class="section-label reveal">What I Know</p>
     <h2 class="section-title reveal">Skills & Tools</h2>
     <p class="section-sub reveal">The things I've picked up along the way.</p>
-
+ 
     <div class="skills-grid reveal">
       <div class="skill-card">
+        <span class="skill-icon">🐍</span>
+        <div class="skill-name">Python</div>
+        <div class="skill-desc">ML pipelines, data analysis with NumPy & Pandas, computer vision feature extraction, and Jupyter notebook workflows.</div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">⚙️</span>
+        <div class="skill-name">C++ & Arduino</div>
+        <div class="skill-desc">Embedded systems programming, event-driven control logic, and microcontroller development for real hardware.</div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">🤖</span>
+        <div class="skill-name">Machine Learning</div>
+        <div class="skill-desc">Designed ML models with Scikit-learn for defect detection at ~95% accuracy. Feature engineering and classification pipelines.</div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">👁️</span>
+        <div class="skill-name">Computer Vision</div>
+        <div class="skill-desc">Image feature extraction and visual pattern analysis applied to real-world diagnostic imaging at HP Inc.</div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">🔌</span>
+        <div class="skill-name">Embedded Systems</div>
+        <div class="skill-desc">Sensor integration, actuator control, analog-to-digital signal processing, and wearable hardware prototyping.</div>
+      </div>
+      <div class="skill-card">
         <span class="skill-icon">💻</span>
-        <div class="skill-name">HTML & CSS</div>
-        <div class="skill-desc">Building and styling web pages from scratch.</div>
-      </div>
-      <div class="skill-card">
-        <span class="skill-icon">⚡</span>
-        <div class="skill-name">JavaScript</div>
-        <div class="skill-desc">Making pages interactive and dynamic.</div>
-      </div>
-      <div class="skill-card">
-        <span class="skill-icon">🎨</span>
-        <div class="skill-name">Design</div>
-        <div class="skill-desc">Eye for layout, color, and user experience.</div>
-      </div>
-      <div class="skill-card">
-        <span class="skill-icon">🛠️</span>
-        <div class="skill-name">Your Skill</div>
-        <div class="skill-desc">Describe what you know and what you've built with it.</div>
-      </div>
-      <div class="skill-card">
-        <span class="skill-icon">📦</span>
-        <div class="skill-name">Your Skill</div>
-        <div class="skill-desc">Describe what you know and what you've built with it.</div>
-      </div>
-      <div class="skill-card">
-        <span class="skill-icon">🚀</span>
-        <div class="skill-name">Your Skill</div>
-        <div class="skill-desc">Describe what you know and what you've built with it.</div>
+        <div class="skill-name">Web Development</div>
+        <div class="skill-desc">Building and styling web pages from scratch with HTML, CSS, and JavaScript. Eye for layout and user experience.</div>
       </div>
     </div>
   </section>
-
+ 
   <div class="divider"></div>
 
   <!-- PROJECTS -->
@@ -680,29 +747,47 @@
     <p class="section-label reveal">My Work</p>
     <h2 class="section-title reveal">Projects</h2>
     <p class="section-sub reveal">Things I've built, explored, or contributed to.</p>
-
+ 
     <div class="projects-grid">
       <a href="#" class="project-card reveal">
-        <div class="project-tag">Web · Personal</div>
-        <div class="project-title">Project One</div>
-        <div class="project-desc">Describe what this project is, what problem it solves, and what you learned from building it.</div>
+        <div class="project-tag">Embedded Systems · Hardware · Award</div>
+        <div class="project-title">RoboChess</div>
+        <div class="project-desc">An interactive robotic chessboard that integrates embedded systems and microcontroller programming to physically move chess pieces. Recognized with the NYU Gunter Georgi Award for innovation and technical excellence.</div>
+        <div class="project-tech-tags" style="margin-top:1rem; display:flex; flex-wrap:wrap; gap:0.4rem;">
+          <span style="font-size:0.72rem;background:#1a1a2e;border:1px solid #7b6cff33;color:var(--accent2);padding:0.2rem 0.6rem;border-radius:4px;">C++</span>
+          <span style="font-size:0.72rem;background:#1a1a2e;border:1px solid #7b6cff33;color:var(--accent2);padding:0.2rem 0.6rem;border-radius:4px;">Arduino</span>
+          <span style="font-size:0.72rem;background:#1a1a2e;border:1px solid #7b6cff33;color:var(--accent2);padding:0.2rem 0.6rem;border-radius:4px;">Sensor Integration</span>
+          <span style="font-size:0.72rem;background:#1a1a2e;border:1px solid #7b6cff33;color:var(--accent2);padding:0.2rem 0.6rem;border-radius:4px;">Actuator Control</span>
+        </div>
         <div class="project-arrow">View Project →</div>
       </a>
       <a href="#" class="project-card reveal">
-        <div class="project-tag">Design · School</div>
-        <div class="project-title">Project Two</div>
-        <div class="project-desc">Describe what this project is, what problem it solves, and what you learned from building it.</div>
+        <div class="project-tag">Wearable Tech · Healthcare · Embedded</div>
+        <div class="project-title">SoleMate</div>
+        <div class="project-desc">A wearable smart insole that analyzes running biomechanics using thin-film force sensors. Captures real-time pressure data across the foot to identify stride patterns and potential injury risks.</div>
+        <div class="project-tech-tags" style="margin-top:1rem; display:flex; flex-wrap:wrap; gap:0.4rem;">
+          <span style="font-size:0.72rem;background:#1a1a2e;border:1px solid #7b6cff33;color:var(--accent2);padding:0.2rem 0.6rem;border-radius:4px;">C++</span>
+          <span style="font-size:0.72rem;background:#1a1a2e;border:1px solid #7b6cff33;color:var(--accent2);padding:0.2rem 0.6rem;border-radius:4px;">Adafruit Circuit Playground</span>
+          <span style="font-size:0.72rem;background:#1a1a2e;border:1px solid #7b6cff33;color:var(--accent2);padding:0.2rem 0.6rem;border-radius:4px;">FSR Sensors</span>
+          <span style="font-size:0.72rem;background:#1a1a2e;border:1px solid #7b6cff33;color:var(--accent2);padding:0.2rem 0.6rem;border-radius:4px;">Signal Processing</span>
+        </div>
         <div class="project-arrow">View Project →</div>
       </a>
       <a href="#" class="project-card reveal">
-        <div class="project-tag">Code · Fun</div>
-        <div class="project-title">Project Three</div>
-        <div class="project-desc">Describe what this project is, what problem it solves, and what you learned from building it.</div>
+        <div class="project-tag">Machine Learning · Internship · HP Inc.</div>
+        <div class="project-title">HP Printer Diagnostics ML System</div>
+        <div class="project-desc">Engineered ML models at HP Inc. to detect and classify streak artifacts in scanned documents with ~95% accuracy. Built classification pipelines that recommend actionable solutions, reducing the need for field service technicians.</div>
+        <div class="project-tech-tags" style="margin-top:1rem; display:flex; flex-wrap:wrap; gap:0.4rem;">
+          <span style="font-size:0.72rem;background:#1a1a2e;border:1px solid #7b6cff33;color:var(--accent2);padding:0.2rem 0.6rem;border-radius:4px;">Python</span>
+          <span style="font-size:0.72rem;background:#1a1a2e;border:1px solid #7b6cff33;color:var(--accent2);padding:0.2rem 0.6rem;border-radius:4px;">Scikit-learn</span>
+          <span style="font-size:0.72rem;background:#1a1a2e;border:1px solid #7b6cff33;color:var(--accent2);padding:0.2rem 0.6rem;border-radius:4px;">Computer Vision</span>
+          <span style="font-size:0.72rem;background:#1a1a2e;border:1px solid #7b6cff33;color:var(--accent2);padding:0.2rem 0.6rem;border-radius:4px;">NumPy / Pandas</span>
+        </div>
         <div class="project-arrow">View Project →</div>
       </a>
     </div>
   </section>
-
+ 
   <div class="divider"></div>
 
   <!-- CONTACT -->
@@ -716,6 +801,7 @@
       <a href="mailto:aescobar@nyu.com" class="btn btn-primary">✉️ Email Me</a>
       <a href="https://www.linkedin.com/in/alexanderescobar-/" target="_blank" class="btn btn-ghost">LinkedIn</a>
       <a href="https://github.com/EscoAl516" target="_blank" class="btn btn-ghost">GitHub</a>
+      <a href="AlexanderEscobar_Resume.pdf" target="_blank" class="btn btn-ghost">📄 Resume</a>
     </div>
   </section>
 
@@ -725,7 +811,7 @@
     <span>Built with HTML & CSS</span>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
@@ -736,12 +822,44 @@
       });
     }, { threshold: 0.1 });
     reveals.forEach(el => observer.observe(el));
-
+ 
     // Education dropdowns — click to collapse/expand
     function toggleEdu(btn) {
-      btn.classList.toggle('collapsed');
-      btn.nextElementSibling.classList.toggle('collapsed');
+      const dropdown = btn.nextElementSibling;
+      const isCollapsed = dropdown.classList.contains('collapsed');
+      if (isCollapsed) {
+        dropdown.classList.remove('collapsed');
+        dropdown.style.gridTemplateRows = '0fr';
+        dropdown.style.opacity = '0';
+        btn.classList.remove('collapsed');
+      } else {
+        dropdown.classList.add('collapsed');
+        dropdown.style.gridTemplateRows = '1fr';
+        dropdown.style.opacity = '1';
+        btn.classList.add('collapsed');
+      }
     }
+ 
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+ 
+    function closeMobile() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+ 
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.contains('open');
+      if (isOpen) {
+        closeMobile();
+      } else {
+        hamburger.classList.add('open');
+        mobileMenu.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    });
   </script>
 
 </body>
