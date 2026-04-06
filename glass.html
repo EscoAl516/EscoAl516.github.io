@@ -331,6 +331,146 @@
 
     .goal-desc { color: var(--muted); font-size: 0.875rem; line-height: 1.65; }
 
+    /* ── RESEARCH PAPER ── */
+    #research { background: var(--bg); }
+ 
+    .paper-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: start;
+      margin-top: 2.5rem;
+    }
+ 
+    .paper-abstract-side {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.25rem;
+      position: relative;
+      overflow: hidden;
+    }
+ 
+    .paper-abstract-side::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 16px 16px 0 0;
+    }
+ 
+    .paper-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 0.75rem;
+    }
+ 
+    .paper-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      line-height: 1.35;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+ 
+    .paper-meta-info {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+ 
+    .paper-abstract-text {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.75;
+    }
+ 
+    .paper-abstract-text p { margin-bottom: 0.85rem; }
+    .paper-abstract-text p:last-child { margin-bottom: 0; }
+    .paper-abstract-text strong { color: var(--accent2); font-weight: 500; }
+ 
+    .paper-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+ 
+    .paper-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--accent2);
+      border: 1px solid #7b6cff33;
+      background: #7b6cff0a;
+      padding: 0.25rem 0.7rem;
+      border-radius: 100px;
+    }
+ 
+    .paper-meta-side {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+ 
+    .paper-why-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+ 
+    .paper-why-icon {
+      font-size: 1.6rem;
+      margin-bottom: 0.6rem;
+    }
+ 
+    .paper-why-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+ 
+    .paper-why-text {
+      color: var(--muted);
+      font-size: 0.875rem;
+      line-height: 1.75;
+      margin-bottom: 0.85rem;
+    }
+ 
+    .paper-why-text:last-child { margin-bottom: 0; }
+ 
+    .paper-download-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      width: 100%;
+      padding: 1rem 1.5rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px #7b6cff30;
+    }
+ 
+    .paper-download-btn:hover {
+      background: #6a5bee;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px #7b6cff50;
+    }
+
     /* ── EXPERIENCES (5 WINDOWS) ── */
     #experiences { background: var(--bg); }
 
@@ -622,9 +762,63 @@
 
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
+    /* ── HAMBURGER MENU ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 200;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 150;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .mobile-menu a:hover { color: var(--accent); }
+    .mobile-menu a.back-link { color: var(--accent2); font-size: 1.4rem; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .nav-links { display: none; }
+      .hamburger { display: flex; }
       .mission-grid { grid-template-columns: 1fr; gap: 2rem; }
       .areas-grid { grid-template-columns: 1fr; }
       .goals-grid { grid-template-columns: 1fr; }
@@ -644,7 +838,19 @@
       <li><a href="#experiences">Experiences</a></li>
       <li><a href="index.html" class="nav-back">← Back to Portfolio</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#mission" onclick="closeMobile()">Mission</a>
+    <a href="#areas" onclick="closeMobile()">Areas</a>
+    <a href="#goals" onclick="closeMobile()">UN Goals</a>
+    <a href="#experiences" onclick="closeMobile()">Experiences</a>
+    <a href="index.html" class="back-link">← Portfolio</a>
+  </div>
 
   <!-- HERO -->
   <section id="hero">
@@ -766,6 +972,65 @@
 
   <div class="divider"></div>
 
+  <!-- RESEARCH PAPER -->
+  <section id="research">
+    <div class="reveal">
+      <p class="section-label">Research &amp; Writing</p>
+      <h2 class="section-title">GLASS Reflective Research Paper</h2>
+    </div>
+ 
+    <div class="paper-grid reveal">
+ 
+      <!-- LEFT: Abstract snippet -->
+      <div class="paper-abstract-side">
+        <div class="paper-label">Abstract</div>
+        <h3 class="paper-title">SmartTransit NYC: An AI-Powered Approach to Subway Reliability and Urban Sustainability</h3>
+        <p class="paper-meta-info">Alexander Escobar &nbsp;&middot;&nbsp; NYU Tandon School of Engineering &nbsp;&middot;&nbsp; April 2025</p>
+        <div class="paper-abstract-text">
+          <p>New York City's subway system serves approximately 3.4 million daily riders yet continues to struggle with chronic reliability deficits and information asymmetries. Despite an on-time performance of 82.2% in 2024, riders still experienced over 486,000 delayed trains throughout the year.</p>
+          <p>This paper presents <strong>SmartTransit NYC</strong> &mdash; a conceptually designed AI-powered prediction system that addresses the critical information gap between raw transit data and rider decision-making. By integrating real-time MTA data feeds, historical delay patterns, weather variables, and time-based usage signals, the system would generate probabilistic outputs across three dimensions: delay likelihood, crowding forecasts, and optimized alternative routing.</p>
+          <p>Environmental projections estimate that even a 2% increase in subway ridership attributable to improved predictive trust could eliminate approximately 100,000 car trips per day and reduce annual CO&#x2082; emissions by roughly 30,000 tons.</p>
+        </div>
+        <div class="paper-tags">
+          <span class="paper-tag">Machine Learning</span>
+          <span class="paper-tag">Urban Sustainability</span>
+          <span class="paper-tag">SDG 11</span>
+          <span class="paper-tag">AI Systems</span>
+          <span class="paper-tag">NYC Transit</span>
+        </div>
+      </div>
+ 
+      <!-- RIGHT: Why I chose this + download -->
+      <div class="paper-meta-side">
+        <div class="paper-why-card">
+          <div class="paper-why-icon">💡</div>
+          <div class="paper-why-label">Why I Chose This Project</div>
+          <p class="paper-why-text">
+            As a student living in New York City, the subway is something I rely on every single day. I have been late to class and other commitments more times than I can count, not because I left late, but because I had no real information on what was actually happening on the line. Apps like Google Maps and Apple Maps will tell you an estimated arrival time, but they do not tell you if there is a delay, how crowded the train is, or what a better option might be. You are just stuck in the station waiting and hoping.
+          </p>
+          <p class="paper-why-text">
+            That experience is what pushed me toward this topic. With everything I have learned over the past four years, I wanted to challenge myself and see if there was actually a better way to approach this. Could we use the data that is already out there to give riders something more useful than a countdown timer? And beyond just the commute, could a system like this make a real difference in areas like sustainability, equity, and how cities think about transit altogether?
+          </p>
+          <p class="paper-why-text">
+            This paper was my attempt to answer those questions and figure out what that might actually look like.
+          </p>
+        </div>
+ 
+        <a href="PDF/SmartTransit_NYC_Paper.pdf" download class="paper-download-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download Full Paper (PDF)
+        </a>
+      </div>
+ 
+    </div>
+  </section>
+ 
+  <div class="divider"></div>
+
   <!-- EXPERIENCES / 5 WINDOWS -->
   <section id="experiences">
     <p class="section-label reveal">The 5 Windows of Growth</p>
@@ -798,7 +1063,7 @@
       </div>
  
       <div class="exp-card reveal" data-window="global"
-        data-title="Short Term Trup — Portugal"
+        data-title="Short Term Trip — Portugal"
         data-tag="🌍 Global Competency"
         data-meta="Consulting Project · Sustainability Focus"
         data-desc="Worked on a consulting project for a real company while visiting organizations dedicated to sustainability, innovation, and clean energy. Gained hands-on experience in strategic problem-solving and saw how engineering skills connect to the UN Sustainable Development Goals."
@@ -817,7 +1082,7 @@
         data-tag="🤝 Service"
         data-meta="Animal Reservation · Sustainability Focus"
         data-desc="Spent a week in the Amazon Rainforest supporting an animal conservation reserve, assisting with daily animal care by maintaining enclosures and preparing feedings. This hands-on experience provided insight into wildlife conservation practices and strengthened my understanding of global sustainability efforts."
-        data-photos='["Photos/Ecuador_Capy.jpg","Ecuador-2.jpg"]'
+        data-photos='["Photos/Ecuador_Capy.jpg","Photos/Ecuador_Group.jpg"]'
         onclick="openModal(this)">
         <div class="exp-window-tag">🌍 Global Competency</div>
         <div class="exp-window-tag">🤝 Service</div>
@@ -831,7 +1096,7 @@
       >
         <div class="exp-window-tag">🏆 Leadership</div>
         <div class="exp-title">First-Year Student Mentor</div>
-        <div class="exp-meta">Community Leadership</div>
+        <div class="exp-meta">Community Leadership · NYU Tandon</div>
         <div class="exp-desc">Provided guidance on campus resources, university life, and academic challenges through weekly check-ins. Helped students from underrepresented backgrounds gain confidence.</div>
       </div>
  
@@ -869,7 +1134,7 @@
         data-tag="🤝 Service"
         data-meta="Global Leadership"
         data-desc="This component documents a missions trip to Santo Domingo in the Dominican Republic with a youth church group. The trip involved hosting church services, distributing food, and providing supplies to local communities. We also visited local churches and built relationships with community members."
-        data-photos='["Photos/Church_Kids.jpeg", "Photos/Church_Food.jpeg"]'
+        data-photos='["Photos/Church_Kids.jpeg", "Photos/Church_Food.JPEG"]'
         onclick="openModal(this)">
         <div class="exp-window-tag">🌍 Global Competency</div>
         <div class="exp-window-tag">🤝 Service</div>
@@ -1044,8 +1309,26 @@ card.style.display = (type === 'all' || windows.includes(type)) ? 'block' : 'non
       document.getElementById('gallery-next').classList.toggle('hidden', currentSlide === totalSlides - 1);
     }
  
-    // Close on Escape key
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function closeMobile() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.contains('open');
+      if (isOpen) {
+        closeMobile();
+      } else {
+        hamburger.classList.add('open');
+        mobileMenu.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    });
   </script>
  
 </body>
